@@ -2,12 +2,14 @@
 
 var _ = require('lodash');
 var SubDepartment = require('./subDepartment.model');
+var Department = require('../department/department.model');
+
 
 // Get list of subDepartments
 exports.index = function(req, res) {
   SubDepartment.find(function (err, subDepartments) {
     if(err) { return handleError(res, err); }
-    return res.status(200).json(subDepartments);
+    return res.json(200, subDepartments);
   });
 };
 
@@ -15,7 +17,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   SubDepartment.findById(req.params.id, function (err, subDepartment) {
     if(err) { return handleError(res, err); }
-    if(!subDepartment) { return res.status(404).send('Not Found'); }
+    if(!subDepartment) { return res.send(404); }
     return res.json(subDepartment);
   });
 };
@@ -24,7 +26,17 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   SubDepartment.create(req.body, function(err, subDepartment) {
     if(err) { return handleError(res, err); }
-    return res.status(201).json(subDepartment);
+    Department.findById(req.body.department, function (err, department) {
+      if(err) { return handleError(res, err); }
+      if(!department) { return res.send(404); }
+      if(department.subDepartments.indexOf(subDepartment._id) == -1) {
+        department.subDepartments.push(subDepartment._id);
+        department.save(function (err) {
+          if(err) { return handleError(res, err); }
+          return res.json(201, subDepartment);
+        });
+      }
+    });
   });
 };
 
@@ -33,11 +45,11 @@ exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   SubDepartment.findById(req.params.id, function (err, subDepartment) {
     if (err) { return handleError(res, err); }
-    if(!subDepartment) { return res.status(404).send('Not Found'); }
+    if(!subDepartment) { return res.send(404); }
     var updated = _.merge(subDepartment, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.status(200).json(subDepartment);
+      return res.json(200, subDepartment);
     });
   });
 };
@@ -46,14 +58,14 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   SubDepartment.findById(req.params.id, function (err, subDepartment) {
     if(err) { return handleError(res, err); }
-    if(!subDepartment) { return res.status(404).send('Not Found'); }
+    if(!subDepartment) { return res.send(404); }
     subDepartment.remove(function(err) {
       if(err) { return handleError(res, err); }
-      return res.status(204).send('No Content');
+      return res.send(204);
     });
   });
 };
 
 function handleError(res, err) {
-  return res.status(500).send(err);
+  return res.send(500, err);
 }
