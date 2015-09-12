@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('temproryRegistrationsApp')
-  .controller('AdminCtrl', function ($scope, $http, Auth, User) {
+  .controller('AdminCtrl', function ($scope, $timeout, $q, $http, Auth, User) {
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
@@ -40,7 +40,12 @@ angular.module('temproryRegistrationsApp')
  
     // Use our rest api to post a new thing
     $scope.addthing = function() {
-      $http.post('/api/things', { name: $scope.newthing });
+      $http.post('/api/things', { name
+
+
+
+
+        : $scope.newthing });
       $scope.newthing = '';
     };
   });
