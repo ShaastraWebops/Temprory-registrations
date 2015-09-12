@@ -5,8 +5,23 @@ var mongoose = require('mongoose'),
 
 var ThingSchema = new Schema({
   name: String,
-  info: String,
-  active: Boolean
+  date: { type: Date, default: Date.now },
+  parentid: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
+
+ThingSchema.statics = {
+  loadRecent: function(cb) {
+    this.find({})
+      .populate({path:'parentid', select: 'name'})
+      .sort('-date')
+      .limit(20)
+      .exec(cb);
+  }
+};
+
+
 
 module.exports = mongoose.model('Thing', ThingSchema);

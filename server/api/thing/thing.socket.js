@@ -16,7 +16,9 @@ exports.register = function(socket) {
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('thing:save', doc);
+  thing.populate(doc, {path:'parentid', select: 'name'}, function(err, thing) {
+    socket.emit('thing:save', thing);
+  });
 }
 
 function onRemove(socket, doc, cb) {

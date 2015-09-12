@@ -30,10 +30,15 @@ exports.show = function(req, res) {
 };
 
 // Creates a new thing in the DB.
+// Creates a new thing in the DB.
 exports.create = function(req, res) {
-  Thing.create(req.body, function(err, thing) {
+  // don't include the date, if a user specified it
+  delete req.body.date;
+ 
+  var thing = new Thing(_.merge({ parentid: req.user._id }, req.body));
+  thing.save(function(err, comment) {
     if(err) { return handleError(res, err); }
-    return res.json(201, thing);
+    return res.json(201, comment);
   });
 };
 
