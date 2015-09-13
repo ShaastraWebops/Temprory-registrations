@@ -49,16 +49,13 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
-  festID: String,
   updatedOn: { type: Date },
   createdOn: { type: Date },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   facebook: {},
   google: {},
-  github: {},
-  selfTeam: { type: Schema.Types.ObjectId, ref: 'Team' },
-  teams: [{ type: Schema.Types.ObjectId, ref: 'Team' }]
+  github: {}
 });
 
 /**

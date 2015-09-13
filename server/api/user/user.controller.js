@@ -333,6 +333,12 @@ exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
 
+exports.getCores = function (req, res, next) {
+  User.find({ role:'core' }, 'name _id phoneNumber', function (err, result) {
+    if (err) { console.log("minu");return handleError(res, err); }
+    return res.json(result);
+  })};
+
 exports.getCoords = function (req, res, next) {
   User.find({ role:'coord' }, 'name _id phoneNumber', function (err, result) {
     if (err) { console.log("minu");return handleError(res, err); }

@@ -1,15 +1,58 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
+<div class="admin" layout-margin>
+<div layout="column">
 
-<div class="container">
-  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="user in users">
-        <strong>{{user.name}}</strong><br>
-        <span class="text-muted">{{user.email}}</span>
-        <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-    </li>
-  </ul>
+      <div class="md-whiteframe-z1">
 
-  
+        <md-toolbar class="md-primary">
+          <h1 class="md-toolbar-tools">
+            Create a new Dept
+          </h1>
+        </md-toolbar>
 
-</div>
+        <md-content layout-padding>
+          <form name="form" ng-submit="newDept(form)" novalidate>
+
+            <md-input-container>
+              <label>Name</label>
+              <input name="name" ng-model="dept.name" ng-required="true" mongoose-error />
+            </md-input-container>
+            <div class="error">
+              <span ng-show="form.name.$error.required && submitted">
+                Name is required.
+              </span>
+              <span>{{ errors.other }}</span>
+            </div>
+
+            <md-input-container>
+              <label>Dept Info</label>
+              <textarea required name="info" ng-model="dept.info" mongoose-error></textarea>
+            </md-input-container> 
+            
+            <div layout="row">
+             <div flex>
+              <md-chips ng-model="selectedCores" md-autocomplete-snap md-require-match>
+                <md-autocomplete
+                  md-selected-item="selectedItem"
+                  md-selected-item-change="null"
+                  md-search-text="searchText"
+                  md-search-text-change="null"
+                  md-items="item in cores"
+                  md-item-text="item.name"
+                  placeholder="Assign a Core member">
+                    <span md-highlight-text="searchText">{{ item.name }}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <strong>{{ $chip.name }}</strong>
+                </md-chip-template>
+              </md-chips>
+             </div>
+            </div>
+
+            <md-button type="submit" class="md-raised md-primary">Create</md-button>
+          </form>
+        </md-content>  
+
+      </div>
+    </div>
+  </div>

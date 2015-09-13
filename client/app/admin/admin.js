@@ -7,5 +7,10 @@ angular.module('temproryRegistrationsApp')
         url: '/admin',
         templateUrl: 'app/admin/admin.html',
         controller: 'AdminCtrl'
+      })
+      .state('home',{
+      	url:'/',
+      	templateUrl:'app/index.html',
+      	controller:'AdminCtrl'
       });
   });

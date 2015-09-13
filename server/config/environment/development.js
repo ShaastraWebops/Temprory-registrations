@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/temproryregistrations-dev'
+    uri: 'mongodb://localhost/erp2016-dev'
   },
 
   seedDB: true

@@ -5,6 +5,6 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/temproryregistrations-test'
+    uri: 'mongodb://localhost/erp2016-test'
   }
 };
