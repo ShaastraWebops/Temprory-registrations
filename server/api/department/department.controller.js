@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Department = require('./department.model');
+var User = require('../user/user.model');
 
 // Get list of departments
 exports.index = function(req, res) {
@@ -26,7 +27,18 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Department.create(req.body, function(err, department) {
     if(err) { return handleError(res, err); }
+    else
+    {
+      User.find({ '_id' : { $in : req.body.cores } },function(err,cores){
+        cores.forEach(function(core){
+          core.department.push(department._id);
+          core.save(function(err){
+             if (err) { return handleError(res, err); }
+          })
+        })
+      })
     return res.json(201, department);
+  }
   });
 };
 

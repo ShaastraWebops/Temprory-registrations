@@ -339,6 +339,13 @@ exports.getCores = function (req, res, next) {
     return res.json(result);
   })};
 
+
+exports.getSuperCoords = function (req, res, next) {
+  User.find({ role:'superCoord' }, 'name _id phoneNumber', function (err, result) {
+    if (err) { console.log("minu");return handleError(res, err); }
+    return res.json(result);
+  })};
+
 exports.getCoords = function (req, res, next) {
   User.find({ role:'coord' }, 'name _id phoneNumber', function (err, result) {
     if (err) { console.log("minu");return handleError(res, err); }

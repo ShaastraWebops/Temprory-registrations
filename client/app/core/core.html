@@ -1,3 +1,99 @@
-<div class="col-md-12">
-This is the core view.
-</div>
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="admin" layout-margin>
+<div layout="column">
+
+      <div class="md-whiteframe-z1">
+
+        <md-toolbar class="md-primary">
+          <h1 class="md-toolbar-tools">
+            Create a sub-Department
+          </h1>
+        </md-toolbar>
+
+        <md-content layout-padding>
+          <form name="form" ng-submit="newSubDept(form)" novalidate>
+
+            <md-input-container>
+              <label>Name</label>
+              <input name="name" ng-model="subDept.name" ng-required="true" mongoose-error />
+            </md-input-container>
+            <div class="error">
+              <span ng-show="form.name.$error.required && submitted">
+                Name is required.
+              </span>
+              <span>{{ errors.other }}</span>
+            </div>
+
+            <md-input-container>
+              <label>Sub-Dept Info</label>
+              <textarea required name="info" ng-model="subDept.info" mongoose-error></textarea>
+            </md-input-container> 
+            <div layout="row">
+             <div flex>
+              <md-chips ng-model="selectedCores" md-autocomplete-snap md-require-match>
+                <md-autocomplete
+                  md-selected-item="selectedItem"
+                  md-selected-item-change="null"
+                  md-search-text="searchText"
+                  md-search-text-change="null"
+                  md-items="item in cores"
+                  md-item-text="item.name"
+                  placeholder="Assign a Core">
+                    <span md-highlight-text="searchText">{{ item.name }}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <strong>{{ $chip.name }}</strong>
+                </md-chip-template>
+              </md-chips>
+             </div>
+            </div>
+<br>
+            <div layout="row">
+             <div flex>
+              <md-chips ng-model="selectedSuperCoords" md-autocomplete-snap md-require-match>
+                <md-autocomplete
+                  md-selected-item="selectedItem"
+                  md-selected-item-change="null"
+                  md-search-text="searchText"
+                  md-search-text-change="null"
+                  md-items="item in superCoords"
+                  md-item-text="item.name"
+                  placeholder="Assign superCoords">
+                    <span md-highlight-text="searchText">{{ item.name }}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <strong>{{ $chip.name }}</strong>
+                </md-chip-template>
+              </md-chips>
+             </div>
+            </div>
+
+<br>
+            
+            <div layout="row">
+             <div flex>
+              <md-chips ng-model="selectedCoords" md-autocomplete-snap md-require-match>
+                <md-autocomplete
+                  md-selected-item="selectedItem"
+                  md-selected-item-change="null"
+                  md-search-text="searchText"
+                  md-search-text-change="null"
+                  md-items="item in coords"
+                  md-item-text="item.name"
+                  placeholder="Assign coords">
+                    <span md-highlight-text="searchText">{{ item.name }}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <strong>{{ $chip.name }}</strong>
+                </md-chip-template>
+              </md-chips>
+             </div>
+            </div>
+           <br>
+            <md-button type="submit" class="md-raised md-primary">Create</md-button>
+          </form>
+        </md-content>  
+
+      </div>
+    </div>
+  </div>

@@ -11,6 +11,9 @@ angular.module('temproryRegistrationsApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.isCore = Auth.isCore;
+    console.log($scope.isLoggedIn);
+    console.log(Auth.isCore);
 
     $scope.logout = function() {
       Auth.logout();

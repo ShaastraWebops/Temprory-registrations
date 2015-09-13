@@ -135,6 +135,9 @@ angular.module('temproryRegistrationsApp')
       isAdmin: function() {
         return currentUser.role === 'admin';
       },
+      isCore:function(){
+        return currentUser.role === 'core';
+      },
 
       /**
        * Get auth token

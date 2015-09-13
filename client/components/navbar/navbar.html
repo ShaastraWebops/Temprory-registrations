@@ -7,7 +7,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">temprory-registrations</a>
+      <a ng-show="isLoggedIn() && isCore()" href="/core" class="navbar-brand">{{getCurrentUser().department[0]}}</a>
+      <a ng-hide="isLoggedIn()" href="/" class="navbar-brand">temprory-registrations</a>
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">

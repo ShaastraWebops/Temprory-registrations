@@ -147,7 +147,39 @@ User.find({}).remove(function() {
               name : 'Narmada',
               value : 'narmada'
             }    
-}, function() {
+},{
+    provider: 'local',
+    role: 'superCoord',
+    name: 'supcoord1',
+    email: 'supcoord1@coord.com',
+    password: 'sup',
+    city: 'coord3City',
+    summerLocation: 'coord3Summer',
+    cgpa: '10',
+    phoneNumber: '9999999999',
+    rollNumber: 'aaaaaaaa',
+    roomNumber: '222',
+    hostel: {
+              name : 'Narmada',
+              value : 'narmada'
+            }    
+}, {
+    provider: 'local',
+    role: 'superCoord',
+    name: 'supcoord2',
+    email: 'supcoord2@coord.com',
+    password: 'sup',
+    city: 'coord3City',
+    summerLocation: 'coord3Summer',
+    cgpa: '10',
+    phoneNumber: '9999999999',
+    rollNumber: 'aaaaaaaa',
+    roomNumber: '222',
+    hostel: {
+              name : 'Narmada',
+              value : 'narmada'
+            }    
+},function() {
       console.log('finished populating users');
     }
   );
