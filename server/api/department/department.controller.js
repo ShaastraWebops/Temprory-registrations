@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Department = require('./department.model');
 var User = require('../user/user.model');
+var subDepartment = require('../subDepartment/subDepartment.model');
 
 // Get list of departments
 exports.index = function(req, res) {
@@ -70,4 +71,17 @@ exports.destroy = function(req, res) {
 
 function handleError(res, err) {
   return res.send(500, err);
+}
+
+exports.getSubDepartments = function(req,res,next){
+ Department.findById(req.params.id,function(err,department){
+  if (err) { console.log("minu");return handleError(res, err); }
+  else
+  {
+    subDepartment.find({ '_id' : { $in : department.subDepartments}},function(err,subDepartments){
+       if (err) { console.log("minu");return handleError(res, err); }
+       return res.json(subDepartments);
+    })
+  }
+ })
 }

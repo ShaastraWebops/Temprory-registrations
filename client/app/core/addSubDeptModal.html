@@ -1,33 +1,33 @@
-<md-dialog aria-label="Create a new SubDept " style="margin-top:5%;width:80%;">
-  <form>
+<md-dialog aria-label="Edit Vertical Details" style="width:80%;">
+  <form name="form" ng-submit="newSubDept(form)" novalidate>
     <md-dialog-content>
-      <div layout="column" class="eventsPortal">
-        <div class="md-whiteframe-z1">
+      <div layout="column" class="verticals">
+        <div class="md-whiteframe-z1 leadsPortal">
           <md-toolbar class="md-primary">
             <h1 class="md-toolbar-tools">
-              Create a New SubDept
+              Create a new subdept
             </h1>
           </md-toolbar>
-          <form onsubmit="newSubDept(form)">
+
           <md-content layout-padding>
             <md-input-container>
-              <label>Sub-Dept Name</label>      
+              <label>Dept Name</label>      
+              <!-- <ng-md-icon icon="perm_identity" style="fill:#00a1f4" class="name"></ng-md-icon> -->
               <input ng-model="subDept.name" type="text">
             </md-input-container>
-
             <md-input-container>
-              <label>Sub-Dept Info</label>      
+              <label>Dept info</label>      
+              <!-- <ng-md-icon icon="perm_identity" style="fill:#00a1f4" class="name"></ng-md-icon> -->
               <textarea ng-model="subDept.info"></textarea>
             </md-input-container>
-            </form>
           </md-content>
         </div>
       </div>
     </md-dialog-content>
-    <br>
+    <div class="md-actions" layout="row">
       <md-button type="submit" class="md-raised md-primary">
         Save
       </md-button>
+    </div>
   </form>
 </md-dialog>
-

@@ -25,10 +25,11 @@ exports.show = function(req, res) {
 // Creates a new subDepartment in the DB.
 exports.create = function(req, res) {
   SubDepartment.create(req.body, function(err, subDepartment) {
-    if(err) { return handleError(res, err); }
+
+    if(err) { console.log("no");return handleError(res, err); }
     Department.findById(req.body.department, function (err, department) {
-      if(err) { return handleError(res, err); }
-      if(!department) { return res.send(404); }
+      if(err) { console.log("no");return handleError(res, err); }
+      if(!department) { console.log(req.body.department,department);return res.send(404); }
       if(department.subDepartments.indexOf(subDepartment._id) == -1) {
         department.subDepartments.push(subDepartment._id);
         department.save(function (err) {
@@ -42,13 +43,16 @@ exports.create = function(req, res) {
 
 // Updates an existing subDepartment in the DB.
 exports.update = function(req, res) {
+  console.log(req.body);
   if(req.body._id) { delete req.body._id; }
   SubDepartment.findById(req.params.id, function (err, subDepartment) {
     if (err) { return handleError(res, err); }
     if(!subDepartment) { return res.send(404); }
     var updated = _.merge(subDepartment, req.body);
+    console.log(updated);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
+      console.log(subDepartment);
       return res.json(200, subDepartment);
     });
   });

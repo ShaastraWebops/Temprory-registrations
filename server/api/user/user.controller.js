@@ -353,16 +353,3 @@ exports.getCoords = function (req, res, next) {
     return res.json(result);
   });
 };
-
-exports.getSubDepartments = function(req,res,next){
- User.findById(req.params.id,function(err,user){
-  if (err) { console.log("minu");return handleError(res, err); }
-  else
-  {
-    subDepartment.find({ '_id' : { $in : user.subDepartment }},function(err,subDepartments){
-       if (err) { console.log("minu");return handleError(res, err); }
-       return res.json(subDepartments);
-    })
-  }
- })
-}

@@ -5,9 +5,8 @@
 <md-content class="md-padding">
 <md-tabs md-dynamic-height md-border-bottom>
 <div ng-repeat = "sub in subDepts">
-  <md-tab label="one">
+  <md-tab label="{{sub.name}}">
   <md-content class="md-padding">
-  <h1 class="md-display-2">Tab One</h1>
   <div class="admin" layout-margin>
     <div layout="column">
 
@@ -15,16 +14,16 @@
 
         <md-toolbar class="md-primary">
         <h1 class="md-toolbar-tools">
-          Create a sub-Department
+          {{sub.name}}
         </h1>
       </md-toolbar>
 
       <md-content layout-padding>
-      <form name="form" ng-submit="newSubDept(form)" novalidate>
+      <form name="form" ng-submit="editSubDept(form,$index)" novalidate>
 
         <md-input-container>
         <label>Name</label>
-        <input name="name" ng-model="subDept.name" ng-required="true" mongoose-error />
+        <input name="name" ng-model="sub.name" ng-required="true" mongoose-error />
       </md-input-container>
       <div class="error">
         <span ng-show="form.name.$error.required && submitted">
@@ -35,7 +34,7 @@
 
       <md-input-container>
       <label>Sub-Dept Info</label>
-      <textarea required name="info" ng-model="subDept.info" mongoose-error></textarea>
+      <textarea required name="info" ng-model="sub.info" mongoose-error></textarea>
     </md-input-container> 
     <div layout="row">
      <div flex>
@@ -99,7 +98,7 @@
 </div>
 </div>
 <br>
-<md-button type="submit" class="md-raised md-primary">Create</md-button>
+<md-button type="submit" class="md-raised md-primary">Update</md-button>
 </form>
 </md-content>  
 
