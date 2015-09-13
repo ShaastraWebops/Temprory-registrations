@@ -10,24 +10,6 @@
     </li>
   </ul>
 
-  <div class="container">
- 
-  <form class="thing-form" ng-submit="addthing()" name="thingForm">
-    <textarea class="form-control" ng-model="newthing" rows="3" placeholder="Enter a new thing" required></textarea>
-    <input class="btn btn-primary" type="submit" ng-disabled="thingForm.$invalid" value="Post">
-  </form>
- 
-  <ul class="thing-list">
-
-  	{{ things }}
-    <li ng-repeat="thing in things">
-
-      <header>{{ thing.parentid }}</header>
-      <p>{{ thing.name }}</p>
-    </li>
-  </ul>
-</div>
-
-
+  
 
 </div>
