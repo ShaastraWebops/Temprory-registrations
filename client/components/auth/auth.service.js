@@ -101,6 +101,10 @@ angular.module('temproryRegistrationsApp')
         return currentUser;
       },
 
+      getUserId:function(){
+        return currentUser._id;
+      },
+
       /**
        * Check if a user is logged in
        *

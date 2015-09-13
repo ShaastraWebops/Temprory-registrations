@@ -1,0 +1,33 @@
+<md-dialog aria-label="Create a new SubDept " style="margin-top:5%;width:80%;">
+  <form>
+    <md-dialog-content>
+      <div layout="column" class="eventsPortal">
+        <div class="md-whiteframe-z1">
+          <md-toolbar class="md-primary">
+            <h1 class="md-toolbar-tools">
+              Create a New SubDept
+            </h1>
+          </md-toolbar>
+          <form onsubmit="newSubDept(form)">
+          <md-content layout-padding>
+            <md-input-container>
+              <label>Sub-Dept Name</label>      
+              <input ng-model="subDept.name" type="text">
+            </md-input-container>
+
+            <md-input-container>
+              <label>Sub-Dept Info</label>      
+              <textarea ng-model="subDept.info"></textarea>
+            </md-input-container>
+            </form>
+          </md-content>
+        </div>
+      </div>
+    </md-dialog-content>
+    <br>
+      <md-button type="submit" class="md-raised md-primary">
+        Save
+      </md-button>
+  </form>
+</md-dialog>
+

@@ -9,6 +9,7 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var smtpapi    = require('smtpapi');
 var Department = require('../department/department.model');
+var subDepartment = require('../subDepartment/subDepartment.model');
 var EMAIL = ''; // Put your fest mail id here
 var PASSWORD = ''; // Put your fest password here
 
@@ -352,3 +353,16 @@ exports.getCoords = function (req, res, next) {
     return res.json(result);
   });
 };
+
+exports.getSubDepartments = function(req,res,next){
+ User.findById(req.params.id,function(err,user){
+  if (err) { console.log("minu");return handleError(res, err); }
+  else
+  {
+    subDepartment.find({ '_id' : { $in : user.subDepartment }},function(err,subDepartments){
+       if (err) { console.log("minu");return handleError(res, err); }
+       return res.json(subDepartments);
+    })
+  }
+ })
+}
